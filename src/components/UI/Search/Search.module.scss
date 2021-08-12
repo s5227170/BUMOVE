@@ -1,0 +1,226 @@
+.form-container {
+  position: absolute;
+  padding: 1rem;
+  border: 2px solid #eeecec;
+  border-radius: 6px;
+  width: 40rem;
+  height: auto;
+  top: 10rem;
+  left: 10rem;
+  background: #f0eeee;
+  box-shadow: 0px 5px 20px 3px rgba(0, 0, 0, 0.42);
+  -webkit-box-shadow: 0px 5px 20px 3px rgba(0, 0, 0, 0.42);
+  -moz-box-shadow: 0px 5px 20px 3px rgba(0, 0, 0, 0.42);
+  display: flex;
+  flex-direction: column;
+
+  & .col1 {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 50%;
+
+    & select {
+      width: 100%;
+      font-size: 1.5rem;
+      padding: 0.2rem 0.2rem;
+      background: #f3f1f1;
+      color: #242323;
+      border: 0.15rem solid #242323;
+      border-radius: 4px;
+      outline: none;
+    }
+  }
+
+  & .col2 {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    align-items: flex-start;
+
+    & select {
+      width: 100%;
+      font-size: 1.5rem;
+      padding: 0.2rem 0.2rem;
+      background: #f3f1f1;
+      color: #242323;
+      border: 0.15rem solid #242323;
+      border-radius: 4px;
+      outline: none;
+    }
+  }
+
+  & .form {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+  }
+
+  & label {
+    font-weight: bold;
+  }
+
+  & .custom-select {
+    position: relative;
+    width: 12rem;
+    margin: 0.2rem 0.5rem 1rem 0rem;
+    -webkit-box-shadow: 0px 10px 13px -7px #000000,
+      0px 11px 49px -29px rgba(0, 0, 0, 0.58);
+    box-shadow: 0px 10px 13px -7px #000000,
+      0px 11px 49px -29px rgba(0, 0, 0, 0.58);
+
+    &:hover > .custom-arrow::before {
+      border-left: 0.75rem solid transparent;
+      border-right: 0.75rem transparent;
+      border-top: 0.75rem solid #141414;
+      left: 35%;
+      top: 30%;
+    }
+    &:hover > select {
+      background: darken(#f3f1f1, 5%);
+      cursor: pointer;
+    }
+  }
+
+  & .custom-arrow {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: linear-gradient(120deg, #d86214 10%, #d81476 80%);
+    height: 100%;
+    width: 2.5rem;
+    border: 0.15rem solid #000000;
+    border-left: none;
+    border-radius: 4px;
+    pointer-events: none !important;
+
+    &::before {
+      content: "";
+      position: absolute;
+      width: 0;
+      height: 0;
+
+      display: block;
+      transform: rotate(-225deg);
+      top: 20%;
+      left: 30%;
+    }
+
+    &::before {
+      content: "";
+      border-left: 1rem solid transparent;
+      border-right: 1rem transparent;
+      border-top: 1rem solid #141414;
+    }
+
+    &:hover::before {
+      content: "";
+      border-left: 1rem solid transparent;
+      border-right: 1rem transparent;
+      border-top: 1rem solid #535252;
+    }
+  }
+
+  & .search-container {
+    display: block;
+    position: relative;
+
+    & .search-field {
+      width: 100%;
+      padding: 0.5rem 2.5rem 0.4rem 2.5rem;
+      border: 0.15rem solid #242323;
+      border-radius: 4px;
+      outline: none;
+      font-size: 1rem;
+      font-weight: bold;
+    }
+
+    & #search-icon {
+      position: absolute;
+      left: 0.5rem;
+      top: 1.65rem;
+      padding: 0rem 0.3rem 0rem 0rem;
+      border-right: 0.15rem solid #000;
+    }
+  }
+}
+
+.submit {
+  background: linear-gradient(120deg, #d86214 10%, #d81476 80%);
+  border: 2px solid #d86214;
+  color: #ffffff;
+  outline: none;
+  width: 10rem;
+  height: 2rem;
+  border-radius: 25rem;
+  font-weight: bold;
+  align-self: flex-end;
+  transition: 0.3s;
+  margin: 1.5rem 0rem 0rem 0rem;
+
+  &:hover {
+    transform: scale(1.05);
+    transition: 0.3s;
+    cursor: pointer;
+  }
+
+  &:active {
+    transform: scale(1);
+    transition: 0.2s;
+  }
+}
+
+@media only screen and( max-width: 1200px) {
+  .form-container{
+    width: 100%;
+  }
+  
+  #search-responsive {
+    width: 100%;
+    position: static;
+    padding: 1rem;
+    border: 2px solid #eeecec;
+    height: auto;
+    background: #f0eeee;
+
+    & .search-container{
+      width: 70%;
+      margin: auto;
+    }
+
+    & .form {
+      display: flex;
+      flex-direction: column;
+
+      & *{
+      margin: auto;
+      }
+    }
+  }
+}
+
+@media only screen and( max-width: 750px) {
+  .form-container{
+    width: 100%;
+    top: 0;
+    left: 0;
+    position: relative;
+
+    & .submit{
+      align-self: center;
+    }
+  }
+}
+
+
+// position: absolute;
+//   padding: 1rem;
+//   border: 2px solid #eeecec;
+//   border-radius: 6px;
+//   width: 40rem;
+//   height: auto;
+//   top: 10rem;
+//   left: 10rem;
+//   background: #f0eeee;

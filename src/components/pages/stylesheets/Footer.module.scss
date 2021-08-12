@@ -1,0 +1,131 @@
+.section {
+  position: static;
+  bottom: 0;
+  left: 0;
+  height: auto;
+  margin-top: 10rem;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background: rgb(170, 162, 135);
+  border-top: 2px solid rgb(175, 167, 143);
+
+  & ul {
+    list-style-type: none;
+
+    & *:hover {
+      cursor: pointer;
+      text-decoration: underline;
+      transition: 0.2;
+    }
+  }
+
+  & hr {
+    width: 80%;
+    margin: auto;
+    border-color: rgb(160, 146, 125);
+  }
+
+  & .links {
+    padding: 1rem 5%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0rem 10rem;
+
+    & .about {
+      display: flex;
+      flex-direction: column;
+    }
+
+    & .community {
+      display: flex;
+      flex-direction: column;
+    }
+
+    & .host {
+      display: flex;
+      flex-direction: column;
+    }
+
+    & .support {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  & .bottom {
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+    margin: auto;
+    justify-content: space-between;
+
+    & .legal * {
+      display: flex;
+      flex-direction: row;
+      padding: 0.1rem 0rem 0rem 0rem;
+      margin: 0.2rem 2rem 0rem 0rem;
+    }
+
+    & .social-media {
+      & ul {
+        display: flex;
+        flex-direction: row;
+      }
+
+      & li {
+        list-style: none;
+        margin: 0rem 0.2rem;
+        font-size: 2rem;
+        color: rgb(70, 68, 68);
+
+        & i:hover {
+          text-decoration: none;
+          color: rgb(39, 38, 38);
+        }
+      }
+    }
+  }
+}
+
+@media only screen and( max-width: 1000px) {
+  .section {
+    & .links {
+      width: 90%;
+      margin: auto;
+    }
+  }
+}
+
+@media only screen and( max-width: 800px) {
+  .section {
+    & .links {
+      width: 90%;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+
+      & div {
+        margin: auto;
+        text-align: center;
+        margin-top: 2rem;
+      }
+    }
+    & .bottom{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      & .social-media{
+        border-top: 1px solid #000;
+        margin-top: .2rem;
+        padding-top: .2rem;
+      }
+
+      & *{
+        margin: auto;
+      }
+    }
+  }
+}

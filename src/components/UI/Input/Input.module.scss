@@ -1,0 +1,95 @@
+.inputv1-wrapper {
+  width: 15rem;
+  height: 3.5rem;
+  background: #fff;
+  padding: 5px;
+  padding-top: 0.5rem;
+  border-radius: 4px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  & label {
+    position: absolute;
+    top: 0.2rem;
+    left: 0.5rem;
+    color: rgba(216, 98, 20, 1);
+    font-weight: bold;
+  }
+
+  & input {
+    position: absolute;
+    bottom: 0.2rem;
+    height: 1.8rem;
+    width: 90%;
+    outline: none;
+    border: none;
+    transition: 0.5s;
+    padding: 0rem 0.5rem 0rem 0.5rem;
+
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    &[type="number"] {
+      -moz-appearance: textfield;
+    }
+
+    &:focus + .underline {
+      visibility: visible;
+      transition: 0.5s;
+      animation: show;
+      animation-name: show;
+      animation-duration: 0.5s;
+    }
+  }
+
+  & .underline {
+    position: absolute;
+    bottom: 0.2rem;
+    width: 100%;
+    align-self: center;
+  }
+
+  & .pound {
+    position: absolute;
+    color: #000000;
+    top: 1.7rem;
+    z-index: 5;
+  }
+
+  & .num > input {
+    padding: 0rem 1rem 0rem 1rem !important;
+  }
+
+  &:focus-within .underline {
+    visibility: visible;
+    transition: 0.5s;
+    animation: show;
+    animation-name: show;
+    animation-duration: 0.5s;
+    z-index: 10;
+  }
+}
+
+@keyframes show {
+  from {
+    width: 0rem;
+  }
+  to {
+    width: 90%;
+  }
+}
+@keyframes hide {
+  from {
+    width: 90%;
+  }
+  to {
+    width: 0rem;
+  }
+}

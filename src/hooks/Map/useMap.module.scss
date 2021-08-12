@@ -1,0 +1,82 @@
+.Map {
+  width: 100%;
+  height: 27rem;
+  margin: auto;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  background: #464646;
+  padding: 0.5rem 0.5rem 2rem 0.5rem;
+  position: relative;
+  border: 2px solid #d0e4f7;
+  border-radius: 4px;
+  -webkit-box-shadow: 0px 7px 10px -7px #ffffff,
+    0px 5px 10px -10px rgba(0, 0, 0, 0.58);
+  box-shadow: 0px 7px 10px -7px #ffffff, 0px 5px 10px -10px rgba(0, 0, 0, 0.58);
+
+  & h6 {
+    color: #d0e4f7;
+    margin: 0rem 0rem 0.4rem 0rem;
+  }
+}
+.my-position {
+  position: absolute;
+  top: 1.4rem;
+  left: 25%;
+  transform: translate(-50%);
+  z-index: 1;
+  padding: 1rem;
+  background: none;
+  outline: none;
+  border: none;
+  color: rgb(202, 55, 55);
+
+  & span {
+    background: #e2e1e1;
+    border-radius: 2.5rem;
+    padding: 0.3rem;
+    -webkit-box-shadow: 0px 2px 7px 1px rgba(0, 0, 0, 0.51);
+    box-shadow: 0px 2px 7px 1px rgba(0, 0, 0, 0.51);
+    transition: all 0.2s;
+
+    &:hover {
+      transform: scale(1.15);
+      transition: all 0.2s;
+    }
+  }
+}
+.address-search {
+  position: absolute;
+  top: 2.7rem;
+  left: 55%;
+  transform: translate(-50%);
+  z-index: 1;
+
+  & input {
+    width: 12rem;
+    height: 2rem;
+    padding: 0.5rem;
+    border-radius: 4px;
+    outline: none;
+    border: 1px solid #bebcbc;
+
+    &:focus {
+      -webkit-box-shadow: 0px 3px 7px 1px rgba(0, 0, 0, 0.51);
+      box-shadow: 0px 3px 7px 1px rgba(0, 0, 0, 0.51);
+    }
+  }
+}
+
+[data-reach-combobox-popover] {
+  z-index: 30 !important;
+}
+
+.view {
+  width: 100% !important;
+  height: 100% !important;
+  margin: auto;
+  margin-top: 0.5rem;
+  background: #464646;
+  position: relative;
+  border: 2px solid #d0e4f7;
+  border-radius: 4px;
+}

@@ -1,0 +1,30 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  align-content: space-between;
+  width: 100%;
+  height: auto;
+  border: 2px solid #d0e4f7;
+  border-radius: 4px;
+  background: #464646;
+  color: #d0e4f7;
+
+  & .room {
+    margin: 0.2rem;
+    display: flex;
+    flex-direction: row;
+
+    & .room-size {
+      margin: 0rem 0.2rem;
+    }
+
+    & .room-type {
+      margin: 0rem 0.2rem;
+    }
+
+    & * {
+      display: inline !important;
+      margin: 0.2rem 0.2rem;
+    }
+  }
+}

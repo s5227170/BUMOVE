@@ -1,0 +1,242 @@
+.section {
+  background: #e2e2e2;
+  width: 100%;
+
+  & .wellcome-container {
+    position: relative;
+    margin-top: 6rem;
+    margin-bottom: 1rem;
+    width: 100%;
+
+    & .wellcome {
+      width: 100%;
+      height: 700px;
+      border-bottom: 2px solid #3d3d3d;
+      -webkit-box-shadow: 0px 5px 27px -10px #000000;
+      box-shadow: 0px 5px 27px -10px #000000;
+    }
+  }
+
+  & .create-offer {
+    width: 5rem;
+    padding: 1rem;
+    font-size: 2.5rem;
+    background: linear-gradient(120deg, #d86214 10%, #d81476 80%);
+    border-radius: 50%;
+    outline: none;
+    border: 2px solid #d86214;
+    -webkit-box-shadow: 0px 5px 27px -10px #000000;
+    box-shadow: 0px 5px 27px -10px #000000;
+    transition: 0.2s;
+    position: absolute;
+    top: 52rem;
+    right: 5%;
+
+    &:hover {
+      transform: scale(1.1);
+      transition: 0.2s;
+      cursor: pointer;
+      background: linear-gradient(160deg, #d86214 10%, #d81476 80%);
+    }
+
+    &:active {
+      transform: scale(1);
+      transition: 0.2s;
+      background: linear-gradient(210deg, #d86214 10%, #d81476 80%);
+    }
+  }
+
+  & .properties {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    height: auto;
+    max-height: 80rem;
+    min-height: 60rem;
+    position: relative;
+    margin: auto;
+    margin-top: 1rem;
+    padding: 2rem 2rem;
+    border: .4rem solid rgb(36, 35, 35);
+    //border-top: none;
+    border-radius: .4rem;
+    //order-bottom: none;
+    overflow-y: scroll;
+    -webkit-box-shadow: 0px 10px 13px -7px #000000, 0px -1px 15px 0px #000000;
+    box-shadow: 0px 10px 13px -7px #000000, 0px -1px 15px 0px #000000; 
+
+    &::-webkit-scrollbar {
+      width: 1em;
+    }
+
+    &::-webkit-scrollbar-track {
+      -webkit-box-shadow: inset 0 0 6px rgba(218, 211, 211, 0.3);
+      border-radius: 4px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: rgb(126, 126, 126);
+      outline: none;
+      border-radius: 4px;
+    }
+  }
+
+  & .tips {
+    margin: auto;
+    width: 80%;
+
+    & h1 {
+      margin: auto;
+      width: 40%;
+      margin-top: 5rem !important;
+    }
+  }
+
+  & .divider {
+    margin-top: 5rem !important;
+    margin-bottom: 1rem !important;
+    width: 80% !important;
+    margin: auto;
+  }
+
+  & .more {
+    width: 80%;
+    height: auto;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+
+    & * {
+      width: 17rem;
+      height: 3rem;
+      padding: 0.2rem;
+      font-family: "Akaya Telivigala", cursive;
+      border-radius: 5rem;
+      outline: none;
+      border: 3px solid #a8135e;
+      background: #d81476;
+      color: rgb(255, 253, 253);
+      font-weight: 700;
+      font-size: 1.5rem;
+      -webkit-box-shadow: 0px 10px 13px -7px #d81476, 0px -1px 15px 0px #d81476;
+      box-shadow: 0px 10px 13px -7px #d81476, 0px -1px 15px 0px #d81476; 
+      transition: 0.2s;
+
+
+      &:hover {
+        cursor: pointer;
+        background: darken(#d81476, 10%);
+        transform: scale(1.05);
+        transition: 0.2s;
+      }
+    }
+  }
+}
+
+@media only screen and( max-width: 1600px) {
+  .section {
+    & .create-offer {
+      width: 5rem;
+      padding: 1rem;
+      font-size: 2.5rem;
+      background: linear-gradient(120deg, #d86214 10%, #d81476 80%);
+      border-radius: 50%;
+      outline: none;
+      border: 2px solid #d86214;
+      -webkit-box-shadow: 0px 5px 27px -10px #000000;
+      box-shadow: 0px 5px 27px -10px #000000;
+      transition: 0.2s;
+      position: absolute;
+      top: 52rem;
+      right: 2%;
+
+    }
+  }
+}
+
+@media only screen and( max-width: 1200px) {
+  .section {
+    & .properties {
+      margin-top: 8rem;
+    }
+
+    & .create-offer {
+      width: 50%;
+      padding: 0.5rem;
+      font-size: 2.5rem;
+      background: linear-gradient(120deg, #d86214 10%, #d81476 80%);
+      border-radius: 1.2rem;
+      outline: none;
+      border: 2px solid #d86214;
+      -webkit-box-shadow: 0px 5px 27px -10px #000000;
+      box-shadow: 0px 5px 27px -10px #000000;
+      transition: 0.2s;
+      position: absolute;
+      top: 32rem;
+      left: 50%;
+      transform: translateX(-50%);
+
+      &:hover {
+        transform: scale(1.1);
+        transform: translateX(-50%);
+        transition: 0.2s;
+        cursor: pointer;
+        background: linear-gradient(175deg, #d86214 10%, #d81476 80%);
+      }
+
+      &:active {
+        transform: scale(1);
+        transform: translateX(-50%);
+        transition: 0.2s;
+        background: linear-gradient(210deg, #d86214 10%, #d81476 80%);
+      }
+    }
+
+    & .wellcome-container {
+      width: 100%;
+    }
+
+    & .wellcome {
+      display: none;
+    }
+
+    & .tips {
+      & h1 {
+        width: 80%;
+      }
+    }
+
+    & .more {
+      display: flex;
+      flex-direction: column;
+
+      & * {
+        height: auto;
+        margin: auto;
+        margin-top: 0.2rem;
+        margin-bottom: 0.2rem;
+      }
+    }
+  }
+}
+
+@media only screen and( max-width: 750px) {
+  .section {
+    margin-top: 18rem;
+    & .wellcome-container {
+      width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    & .create-offer{
+      top: 45rem;
+      
+    }
+  }
+}
+
+//Add media queries, set a minimal device goal
+//Make the navbar into small fields in a column instead
+//of touching the components themselves. Do this for all
+//Responsive design

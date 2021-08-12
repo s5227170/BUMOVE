@@ -1,0 +1,28 @@
+.success-message{
+    position: absolute;
+    top: 0rem;
+    left: 0rem;
+    width: 100%;
+    padding: .5rem 0rem;
+    background: rgb(98, 173, 80);
+    color: #fff;
+    margin-top: 6rem;
+    z-index: 35;
+    text-align: center;
+    animation-name: dissapear;
+    animation-delay: 2s;
+    animation-duration: 1s;
+    animation-direction: normal;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
+}
+
+@keyframes dissapear {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+
+}
