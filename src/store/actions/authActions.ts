@@ -1,5 +1,4 @@
 import { ThunkAction } from 'redux-thunk';
-import axios, { AxiosResponse } from "axios";
 
 import { SignUpData, AuthAction, SET_USER, User, SET_LOADING, SIGN_OUT, SignInData, SET_ERROR, NEED_VERIFICATION, SET_SUCCESS, SET_AUTH_MESSAGE_CHECK } from '../types';
 import { RootState } from '..';
@@ -11,11 +10,11 @@ export const signup = (data: SignUpData, onError: () => void): ThunkAction<void,
     return async dispatch => {
         try {
             const signUpUser = await agent.authentication.signUp(data.email, data.password, data.name);
-            if (signUpUser._id) {
+            if (signUpUser.data.signUp) {
                 dispatch({
                     type: SET_USER,
-                    payload1: signUpUser,
-                    payload2: signUpUser.admin,
+                    payload1: signUpUser.data.signUp,
+                    payload2: signUpUser.data.signUp.admin,
                     payload3: true
                 });
                 dispatch({
@@ -40,7 +39,6 @@ export const getUser = (): ThunkAction<void, RootState, null, AuthAction> => {
         try {
             //create a web socket and connectthe user to the BE for real-time authentication
             const user = await agent.authentication.user()
-            //console.log(user)
             if (user.data.user) {
                 dispatch({
                     type: SET_USER,

@@ -27,8 +27,8 @@ const Homepage: FC = () => {
     const dispatch = useDispatch();
 
     const { user, successAuth, error, authChecked } = useSelector((state: RootState) => state.auth);
-    const { showModal, convo, backdrop, modalType, modalStyle } = useSelector((state: RootState) => state.UI);
-    const { rents, rentsID, successCreate } = useSelector((state: RootState) => state.offers);
+    const { showModal, backdrop, modalType, modalStyle } = useSelector((state: RootState) => state.UI);
+    const { rents, rentsID, successCreate, convo } = useSelector((state: RootState) => state.offers);
 
     const [message, setMessage] = useState(false);
     const [errorMessage, setErrorMessage] = useState(false);
@@ -103,7 +103,7 @@ const Homepage: FC = () => {
                 }))
         }
     }, [rents])
-    
+
     return (
         <section className={classes.section}>
             {backdrop && modalType == "Create" ?
@@ -161,10 +161,15 @@ const Homepage: FC = () => {
             }
             {showModal && modalType == "Chat" ?
                 <Modal>
-                    {convo?.home && convo?.id ?
-                        <ChatHead id={convo!.id} home={convo!.home} away={convo.away} offerAvatar={convo.offerAvatar} rentId={convo!.rentId} texts={convo!.texts} />
+                    {convo?
+                        // @ts-ignore
+                    convo?.home && convo?._id ?
+                        // @ts-ignore
+                        <ChatHead id={convo!._id} home={convo!.home} away={convo.away} offerAvatar={convo.offerAvatar} rentId={convo!.rentId} texts={convo!.texts} offerName={convo.name}/>
                         :
                         <Loader />
+                        :
+                        null
                     }
                 </Modal>
                 :

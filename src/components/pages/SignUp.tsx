@@ -18,6 +18,7 @@ const SignUp: FC = () => {
     useEffect(() => {
         return () => {
             if (error) {
+                setLoading(false)
                 dispatch(setError(''));
             }
         }

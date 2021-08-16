@@ -157,7 +157,6 @@ const Update: FC = () => {
             setRent({ ...rent, images: imageLinks })
         }
 
-        console.log(rent.rooms)
         //@ts-ignore
         if (rooms.length == 0) {
             setRent({ ...rent, rooms: offer!.rooms })
@@ -167,7 +166,6 @@ const Update: FC = () => {
         else {
             setRent({ ...rent, rooms: rooms })
         }
-        console.log(rent.rooms)
 
         if (rent.title == "" || !rent.type || !rent.price || rent.rooms == [] || rent.location == { lat: 50.721680, lng: -1.878530 } || rent.information === "") {
             alert("Please fill all fields");
@@ -201,7 +199,7 @@ const Update: FC = () => {
     useEffect(() => {
         if (imageSuccess == true) {
             dispatch(setimagesuccess(false))
-            console.log("in the useEffect and the value is positive")
+
             //this is all done after links are set and the linksSuccess variable is changed to true
             dispatch(setloadingoffer(true));
             //@ts-ignore

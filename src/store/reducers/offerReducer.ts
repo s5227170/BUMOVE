@@ -1,4 +1,4 @@
-import { CREATE_OFFER_FAILURE, CREATE_OFFER_LOADING, CREATE_OFFER_SUCCESS, DELETE_OFFER_FAILURE, DELETE_OFFER_LOADING, DELETE_OFFER_SUCCESS, LIST_CONVERSATIONS, LIST_OFFER_FAILURE, LIST_OFFER_LOADING, LIST_OFFER_SUCCESS, offerAction, offerState, SET_CREATE_SUCCESS, SET_DEL_SUCCESS, SET_FILTER, SET_IMAGES, SET_IMAGE_AMOUNT, SET_IMAGE_AMOUNT_LOADING, SET_IMAGE_AMOUNT_MAX, SET_IMAGE_LINKS, SET_IMAGE_NAMES, SET_IMAGE_SUCCESS, SET_LOADING_OFFER, SET_LOCATION, SET_OFFERS_IDS, SET_UPDATE_SUCCESS, SET_ROOMS, SET_ROOM_SIZE, SET_ROOM_TYPE, SET_VIEW_OFFER, UPDATE_OFFER_FAILURE, UPDATE_OFFER_LOADING, UPDATE_OFFER_SUCCESS } from '../types'
+import { CREATE_OFFER_FAILURE, CREATE_OFFER_LOADING, CREATE_OFFER_SUCCESS, DELETE_OFFER_FAILURE, DELETE_OFFER_LOADING, DELETE_OFFER_SUCCESS, LIST_CONVERSATIONS, LIST_OFFER_FAILURE, LIST_OFFER_LOADING, LIST_OFFER_SUCCESS, offerAction, offerState, SET_CREATE_SUCCESS, SET_DEL_SUCCESS, SET_FILTER, SET_IMAGES, SET_IMAGE_AMOUNT, SET_IMAGE_AMOUNT_LOADING, SET_IMAGE_AMOUNT_MAX, SET_IMAGE_LINKS, SET_IMAGE_NAMES, SET_IMAGE_SUCCESS, SET_LOADING_OFFER, SET_LOCATION, SET_OFFERS_IDS, SET_UPDATE_SUCCESS, SET_ROOMS, SET_ROOM_SIZE, SET_ROOM_TYPE, SET_VIEW_OFFER, UPDATE_OFFER_FAILURE, UPDATE_OFFER_LOADING, UPDATE_OFFER_SUCCESS, LOAD_TEXTS, SET_CONVO_RENT } from '../types'
 
 const initialState: offerState = {
     rooms: [],
@@ -17,6 +17,8 @@ const initialState: offerState = {
     imageLoading: false,
     imageMaxAmount: false,
     convos: null,
+    convo: null,
+    texts: null,
     imageNames: [],
     imageSuccess: false
 }
@@ -166,7 +168,7 @@ export default (state = initialState, action: offerAction) => {
         case LIST_CONVERSATIONS:
             return {
                 ...state,
-                convos: action.payload,
+                texts: action.payload,
             }
         case SET_IMAGE_SUCCESS:
             return {
@@ -177,6 +179,11 @@ export default (state = initialState, action: offerAction) => {
             return {
                 ...state,
                successUpdate: action.payload,
+            }
+        case SET_CONVO_RENT:
+            return {
+                ...state,
+               convo: action.payload,
             }
         default:
             return state;

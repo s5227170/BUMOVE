@@ -1,4 +1,4 @@
-import { UIAction, SET_ROOMS, Room, offerAction, SET_ROOM_TYPE, SET_LOCATION, coordinates, SET_IMAGES, Rent, CREATE_OFFER_LOADING, CREATE_OFFER_SUCCESS, CREATE_OFFER_FAILURE, SET_IMAGE_AMOUNT, SET_LOADING_OFFER, SET_IMAGE_LINKS, LIST_OFFER_LOADING, LIST_OFFER_SUCCESS, SET_IMAGE_AMOUNT_LOADING, SET_IMAGE_AMOUNT_MAX, DELETE_OFFER_FAILURE, DELETE_OFFER_SUCCESS, DELETE_OFFER_LOADING, UPDATE_OFFER_LOADING, UPDATE_OFFER_SUCCESS, UPDATE_OFFER_FAILURE, SET_SHOW_DEL, SET_DEL_SUCCESS, SET_OFFERS_IDS, SET_IMAGE_NAMES, LIST_CONVERSATIONS, AuthAction, SET_IMAGE_SUCCESS, SET_UPDATE_SUCCESS, SET_CREATE_SUCCESS, } from '../types';
+import { UIAction, SET_ROOMS, Room, offerAction, SET_ROOM_TYPE, SET_LOCATION, coordinates, SET_IMAGES, Rent, CREATE_OFFER_LOADING, CREATE_OFFER_SUCCESS, CREATE_OFFER_FAILURE, SET_IMAGE_AMOUNT, SET_LOADING_OFFER, SET_IMAGE_LINKS, LIST_OFFER_LOADING, LIST_OFFER_SUCCESS, SET_IMAGE_AMOUNT_LOADING, SET_IMAGE_AMOUNT_MAX, DELETE_OFFER_FAILURE, DELETE_OFFER_SUCCESS, DELETE_OFFER_LOADING, UPDATE_OFFER_LOADING, UPDATE_OFFER_SUCCESS, UPDATE_OFFER_FAILURE, SET_SHOW_DEL, SET_DEL_SUCCESS, SET_OFFERS_IDS, SET_IMAGE_NAMES, LIST_CONVERSATIONS, AuthAction, SET_IMAGE_SUCCESS, SET_UPDATE_SUCCESS, SET_CREATE_SUCCESS, SET_CONVO_RENT, } from '../types';
 import { Dispatch } from 'redux';
 import agent from '../../api/agent';
 import firebase from 'firebase';
@@ -172,18 +172,6 @@ export const setimagesuccess = (success: boolean) => (dispatch: Dispatch<offerAc
             type: SET_IMAGE_SUCCESS,
             payload: success
         })
-    } catch (e) {
-
-    }
-}
-
-export const setloadingoffer = (load: boolean) => (dispatch: Dispatch<offerAction>) => {
-    try {
-        dispatch({
-            type: SET_LOADING_OFFER,
-            payload: load
-        })
-
     } catch (e) {
 
     }
@@ -376,6 +364,7 @@ export const filteroffers = (ids: string[], all: Rent[], min: number, max: numbe
 export const setconversations = () => async (dispatch: Dispatch<offerAction>) => {
     try {
         const convos = await agent.conversation.list()
+        //console.log(convos)
         dispatch({
             type: LIST_CONVERSATIONS,
             payload: convos
@@ -385,3 +374,30 @@ export const setconversations = () => async (dispatch: Dispatch<offerAction>) =>
 
     }
 }
+
+export const getconversationbyrent = (rentId: string) => async (dispatch: Dispatch<offerAction>) => {
+    try {
+        const convos = await agent.conversation.detailsByRent(rentId)
+        console.log(convos.data)
+        dispatch({
+            type: SET_CONVO_RENT,
+            payload: convos.data.conversationByRent
+        })
+
+    } catch (e) {
+
+    }
+}
+
+export const setloadingoffer = (load: boolean) => (dispatch: Dispatch<offerAction>) => {
+    try {
+        dispatch({
+            type: SET_LOADING_OFFER,
+            payload: load
+        })
+
+    } catch (e) {
+
+    }
+}
+

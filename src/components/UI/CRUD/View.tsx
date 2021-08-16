@@ -11,6 +11,7 @@ import firebase from 'firebase';
 import { v4 as uuid } from 'uuid';
 import agent from '../../../api/agent';
 import { Conversation } from '../../../store/types';
+import { getconversationbyrent, setconversations } from '../../../store/actions/offerActions';
 
 const View: FC = () => {
     const dispatch = useDispatch();
@@ -18,7 +19,9 @@ const View: FC = () => {
     const { authenticated } = useSelector((state: RootState) => state.auth)
     const { offer } = useSelector((state: RootState) => state.UI)
     const { showDel } = useSelector((state: RootState) => state.UI)
+    const { convo } = useSelector((state: RootState) => state.offers)
     const [exist, setExist] = useState(false);
+    const [unlocked, setUnlocked] = useState(false)
     //const [messages, setMessages] = useState<any>();
     //const [messages2, setMessages2] = useState<any>();
     const [existingConversation, setExistingConversation] = useState<any>();
@@ -45,27 +48,31 @@ const View: FC = () => {
         //             })
         //         })
         // }
-            if(authenticated ){
-        agent.conversation.detailsByRent(offer!._id).then(response => {
-            //console.log(response)
-            if(response)
-            setExistingConversation(response)
-            setExist(true)
-        })
-    }
+        setUnlocked(false)
+        dispatch(getconversationbyrent(offer!._id))
+
     }, [])
+
+    useEffect(() => {
+        if (convo) {
+            setExistingConversation(convo)
+            setUnlocked(true)
+            setExist(true)
+        }
+        setUnlocked(true)
+    }, [convo])
 
     const messageHandler = async () => {
         //the "exist" variable checks if the conversation already exists and if it does
         //it takes its texts, otherwise it creates a new conversation in the "else" section
 
         if (exist) {
-            if (existingConversation){
-                dispatch(setconvo({ id: existingConversation.id, home: existingConversation.home, rentId: existingConversation.rentId, away: existingConversation.away, offerAvatar: existingConversation.offerAvatar, texts: existingConversation.texts }))
-            
-            dispatch(setmodaltype("Chat"));
-            dispatch(setmodal(true));
-            dispatch(setbackdrop(true));
+            if (existingConversation) {
+                dispatch(setconvo({ _id: existingConversation.id, home: existingConversation.home, rentId: existingConversation.rentId, away: existingConversation.away, offerAvatar: existingConversation.offerAvatar, texts: existingConversation.texts }))
+
+                dispatch(setmodaltype("Chat"));
+                dispatch(setmodal(true));
+                dispatch(setbackdrop(true));
             }
         } else {
             // const db = firebase.firestore().collection('messages');
@@ -84,11 +91,13 @@ const View: FC = () => {
             //         console.error(err);
             //     });
             //console.log(offer!.author)
-            const fetchConvo = await agent.conversation.create(offer!.author, offer!._id);
-            if(fetchConvo){
-                dispatch(setconvo({ id: fetchConvo.id, home: fetchConvo.home, rentId: fetchConvo.rentId, away: fetchConvo.away, offerAvatar: fetchConvo.offerAvatar, texts: fetchConvo.texts }))
+
+            // @ts-ignore
+            const fetchConvo = await agent.conversation.create(offer!.author._id, offer!._id);
+            if (fetchConvo) {
+                dispatch(setconvo({ _id: fetchConvo.id, home: fetchConvo.home, rentId: fetchConvo.rentId, away: fetchConvo.away, offerAvatar: fetchConvo.offerAvatar, texts: fetchConvo.texts }))
             }
-            
+
             //dispatch(setconvo({ user: user!, convoID: offer!.id, convo: name, name: offer!.title }))
             dispatch(setmodaltype("Chat"));
             dispatch(setmodal(true));
@@ -110,13 +119,13 @@ const View: FC = () => {
             dispatch(setbackdrop(false));
             dispatch(setoffer(null, ""));
             dispatch(setmodaltype(""));
-          }, 700);
+        }, 700);
     }
 
     const showDelete = () => {
         if (exist) {
             if (existingConversation) {
-                dispatch(setconvo({ id: existingConversation.id, home: existingConversation.home, rentId: existingConversation.rentId, away: existingConversation.away, offerAvatar: existingConversation.offerAvatar, texts: existingConversation.texts }));
+                dispatch(setconvo({ _id: existingConversation.id, home: existingConversation.home, rentId: existingConversation.rentId, away: existingConversation.away, offerAvatar: existingConversation.offerAvatar, texts: existingConversation.texts }));
             }
         }
         dispatch(setshowdel(!showDel));
@@ -124,7 +133,7 @@ const View: FC = () => {
 
     return (
         <section className={classes.section} >
-            { showDel ?
+            {showDel ?
                 <Delete />
                 :
                 null}
@@ -143,7 +152,7 @@ const View: FC = () => {
             <div className={classes.col2}>
                 <span id={classes['close']} className="material-icons md-36" onClick={closeHandler}>
                     cancel_presentation
-                    </span>
+                </span>
                 <div className={classes.row1}>
                     <div className={classes.rooms}>
                         <h3>Rooms</h3>
@@ -203,11 +212,11 @@ const View: FC = () => {
                             {authenticated ?
                                 //@ts-ignore
                                 offer!.author._id == user!._id ?
-                                    <h4 onClick={() => alert("You are the owner of that offer!")}>Message</h4>
+                                    <button onClick={() => alert("You are the owner of that offer!")}>Message</button>
                                     :
-                                    <h4 onClick={messageHandler} >Message</h4>
+                                    <button disabled={!unlocked} onClick={messageHandler} >Message</button>
                                 :
-                                <h4 onClick={() => alert("You need to be registered in order to message the owner of this offer!")}>Message</h4>
+                                <button onClick={() => alert("You need to be registered in order to message the owner of this offer!")}>Message</button>
                             }
                         </div>
                         {authenticated ?

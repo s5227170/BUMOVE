@@ -17,6 +17,7 @@ export const SET_CONVO = 'SET_CONVO';
 export const SET_AVATAR = 'SET_AVATAR';
 export const SET_MODAL_STYLE = 'SET_MODAL_STYLE';
 export const SET_AUTH_MESSAGE_CHECK = 'SET_AUTH_MESSAGE_CHECK';
+export const LOAD_TEXTS = 'LOAD_TEXTS';
 //Offers
 export const SET_ROOMS = 'SET_ROOMS';
 export const SET_ROOM_TYPE = 'SET_ROOM_TYPE';
@@ -51,6 +52,7 @@ export const SET_OFFER_DELETE = 'SET_OFFER_DELETE';
 export const SET_FILTER = 'SET_FILTER';
 export const LIST_CONVERSATIONS = 'LIST_CONVERSATIONS';
 export const SET_IMAGE_SUCCESS = 'SET_IMAGE_SUCCESS';
+export const SET_CONVO_RENT = 'SET_CONVO_RENT';
 
 //User
 export interface User {
@@ -99,7 +101,7 @@ export interface coordinates {
 
 //Conversation
 export interface Conversation {
-    id: string;
+    _id: string;
     home: string;
     away: string;
     offerAvatar: string;
@@ -142,6 +144,8 @@ export interface offerState {
     imageMaxAmount: false,
     imageNames: string[] | [],
     convos: [] | null,
+    convo: null | Conversation,
+    texts: [] | null,
     imageSuccess: false,
 }
 
@@ -281,6 +285,7 @@ interface SetModalStyle{
 
 //UI Actions export
 export type UIAction =
+    setTexts |
     SetModalStyle |
     SetAvatar |
     SetToDelete |
@@ -457,8 +462,19 @@ interface setImageSuccess{
     payload: boolean
 }
 
+interface setTexts{
+    type: typeof LOAD_TEXTS,
+    payload: string[]
+}
+
+interface setConvoRent{
+    type: typeof SET_CONVO_RENT,
+    payload: Conversation
+}
+
 //Offer Actions
 export type offerAction =
+    setConvoRent |
     setImageSuccess |
     ListConversations |
     SetFilters |

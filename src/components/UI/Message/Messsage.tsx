@@ -12,23 +12,23 @@ interface Props {
     uid?: string,
 }
 
-const Message: FC<Props> = ({ createdAt, content, displayName, avatar, uid}) => {
+const Message: FC<Props> = ({ createdAt, content, displayName, avatar, uid }) => {
     const { user } = useSelector((state: RootState) => state.auth)
-    
-    return(
+
+    return (
         <Fragment>
-        
+
             {//@ts-ignore
-            displayName!=user?.id?
-                <div className={classes.messageA}>
-                    <img src={avatar} />
-                    <p>{content}</p>
-                </div>
-            :
-                <div className={classes.messageH}>
-                    <p>{content}</p>
-                    <img src={avatar} />
-                </div>
+                displayName != user!._id ?
+                    <div className={classes.messageA}>
+                        <img src={avatar} />
+                        <p>{content}</p>
+                    </div>
+                    :
+                    <div className={classes.messageH}>
+                        <p>{content}</p>
+                        <img src={avatar} />
+                    </div>
             }
         </Fragment>
     );

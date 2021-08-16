@@ -1,6 +1,7 @@
-import { UIAction, SET_PAGE, SHOW_MODAL, SET_BACKDROP, SET_MODAL_TYPE, Rent, SET_OFFER, SET_SHOW_DEL, SET_SHOW_CHAT, Conversation, SET_CONVO, SET_OFFER_DELETE, SET_AVATAR, User, SET_MODAL_STYLE, SET_AUTH_MESSAGE_CHECK, } from '../types';
+import { UIAction, SET_PAGE, SHOW_MODAL, SET_BACKDROP, SET_MODAL_TYPE, Rent, SET_OFFER, SET_SHOW_DEL, SET_SHOW_CHAT, Conversation, SET_CONVO, SET_OFFER_DELETE, SET_AVATAR, User, SET_MODAL_STYLE, SET_AUTH_MESSAGE_CHECK, LOAD_TEXTS, SET_LOADING_OFFER, offerAction, } from '../types';
 import { Dispatch } from 'redux';
 import firebase from 'firebase';
+import agent from '../../api/agent';
 
 export const setpage = (value: "" | "SignIn" | "Browse" | "SignUp" | "/") => (dispatch: Dispatch<UIAction>) => {
     try {
@@ -47,7 +48,6 @@ export const setmodaltype = (type: "View" | "Create" | "Update" | "Message" | "C
 }
 
 export const setoffer = (offer: Rent | null, offerID: string) => (dispatch: Dispatch<UIAction>) => {
-    console.log(offerID)
     try {
         dispatch({
             type: SET_OFFER,
@@ -145,3 +145,21 @@ export const setmodalstyle = (style: boolean) => (dispatch: Dispatch<UIAction>) 
     }
 }
 
+
+export const loadtexts = (convoId: string) => async (dispatch: Dispatch<UIAction>, dispatch2: Dispatch<offerAction>) => {
+    try {
+        const texts = await agent.texts.list(convoId)
+        //console.log(convos)
+        dispatch({
+            type: LOAD_TEXTS,
+            payload: texts
+        })
+        dispatch2({
+            type: SET_LOADING_OFFER,
+            payload: false
+        })
+
+    } catch (e) {
+
+    }
+}

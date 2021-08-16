@@ -1,4 +1,4 @@
-import { SET_AUTH_MESSAGE_CHECK, SET_AVATAR, SET_BACKDROP, SET_CONVO, SET_MODAL_STYLE, SET_MODAL_TYPE, SET_OFFER, SET_OFFER_DELETE, SET_PAGE, SET_SHOW_CHAT, SET_SHOW_DEL, SET_VIEW_OFFER, SHOW_MODAL, UIAction, UIState } from '../types'
+import { LOAD_TEXTS, SET_AUTH_MESSAGE_CHECK, SET_AVATAR, SET_BACKDROP, SET_CONVO, SET_MODAL_STYLE, SET_MODAL_TYPE, SET_OFFER, SET_OFFER_DELETE, SET_PAGE, SET_SHOW_CHAT, SET_SHOW_DEL, SET_VIEW_OFFER, SHOW_MODAL, UIAction, UIState } from '../types'
 
 const initialState: UIState = {
     page: "",
@@ -78,7 +78,11 @@ export default (state = initialState, action: UIAction) => {
                 ...state,
                 modalStyle: action.payload,
             }
-        
+        case LOAD_TEXTS:
+            return {
+                ...state,
+                texts: action.payload,
+            }
         default:
             return state;
     }

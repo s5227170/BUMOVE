@@ -99,10 +99,8 @@ const Create: FC = () => {
     }, [rent.type])
 
     useEffect(() => {
-        console.log("in the useEffect")
         if (imageSuccess == true) {
             dispatch(setimagesuccess(false))
-            console.log("in the useEffect and the value is positive")
             //this is all done after links are set and the linksSuccess variable is changed to true
             dispatch(setloadingoffer(true));
             //@ts-ignore

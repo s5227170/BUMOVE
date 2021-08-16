@@ -3,50 +3,28 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../store';
 import { setbackdrop, setconvo, setmodal, setmodalstyle, setmodaltype, setshowchat } from '../../../store/actions/UIActions';
 
-import firebase from 'firebase';
 import classes from './Messages.module.scss';
 import ChatHead from '../ChatHead/ChatHead';
 import { v4 as uuid } from 'uuid';
-import agent from '../../../api/agent';
+import { setconversations } from '../../../store/actions/offerActions';
 
 const Messages: FC = () => {
     const dispatch = useDispatch();
     const { user } = useSelector((state: RootState) => state.auth)
+    const { convos } = useSelector((state: RootState) => state.offers)
     const [loading, setLoading] = useState(false);
     const [loaded, setLoaded] = useState(false);
     const [msgItems, setMsgItems] = useState<Array<any>>([]);
-    const [msgItems2, setMsgItems2] = useState<Array<any>>([]);
-    //const msgs = firebase.firestore().collection('messages');
 
-    function getMsgs() {
-        // setLoading(true);
-        // const items: any[] = [];
+    useEffect(() => {
+        if(convos){
+            setMsgItems(convos)
+        }
+    }, [convos])
 
-        // msgs
-        //     .where('away', '==', user?.id)
-        //     .onSnapshot((querySnapshot: any) => {
-        //         querySnapshot.forEach((doc: any) => {
-        //             setMsgItems([...msgItems, doc.data()])
-        //         })
-        //     });
-
-        // msgs
-        //     .where('home', '==', user?.id)
-        //     .onSnapshot((querySnapshot: any) => {
-        //         querySnapshot.forEach((doc: any) => {
-        //             setMsgItems2([...msgItems2, doc.data()])
-        //         })
-        //     });
-        // setLoading(false);
-        // setLoaded(true);
-        
-
-    }
-
-    // useEffect(() => {
-    //     if (!loaded)
-    //         getMsgs();
-    // }, [])
+    useEffect(() => {
+        dispatch(setconversations());
+    }, [])
 
     const closeHandler = () => {
         dispatch(setmodalstyle(true))
@@ -73,16 +51,7 @@ const Messages: FC = () => {
                         return <div className={classes.conversation} key={uuid()} >
                             <img src={item.offerAvatar} alt={"Avatar"} />
                             <h5>{item.name}</h5>
-                            <span id={classes['continue']} className="material-icons md-36" onClick={() => (dispatch(setmodaltype("Chat")), dispatch(setconvo({ id: item.id, home: item.home, rentId: item.rentId, away: item.away, offerAvatar: item.offerAvatar, texts: item.texts })))}>
-                                double_arrow
-                            </span>
-                        </div>
-                    })}
-                    {msgItems2.map(item => {
-                        return <div className={classes.conversation} key={uuid()} >
-                            <img src={item.offerAvatar} alt={"Avatar"} />
-                            <h5>{item.name}</h5>
-                            <span id={classes['continue']} className="material-icons md-36" onClick={() => (dispatch(setmodaltype("Chat")), dispatch(setconvo({ id: item.id, home: item.home, rentId: item.rentId, away: item.away, offerAvatar: item.offerAvatar, texts: item.texts })))}>
+                            <span id={classes['continue']} className="material-icons md-36" onClick={() => (dispatch(setmodaltype("Chat")), dispatch(setconvo({ _id: item.id, home: item.home, rentId: item.rentId, away: item.away, offerAvatar: item.offerAvatar, texts: item.texts })))}>
                                 double_arrow
                             </span>
                         </div>

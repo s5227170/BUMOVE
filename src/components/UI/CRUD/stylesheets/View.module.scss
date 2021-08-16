@@ -13,7 +13,6 @@
     flex-direction: column;
     padding: 1rem;
     width: 50%;
-    
 
     & .row1 {
       display: flex;
@@ -25,7 +24,7 @@
       &::-webkit-scrollbar {
         width: 1em;
       }
-  
+
       &::-webkit-scrollbar-track {
         -webkit-box-shadow: inset 0 0 6px rgba(218, 211, 211, 0.3);
         border-radius: 4px;
@@ -211,7 +210,29 @@
           margin: auto;
           background: #d86214;
           border: 1px solid #d0e4f7;
+          border-radius: 6px;
           height: 2rem;
+
+          & button {
+            height: 100%;
+            width: 100%;
+            background: #d86214;
+            border: 1px solid #d0e4f7;
+            border-radius: 6px;
+            color: #d0e4f7;
+
+            &:hover {
+              cursor: pointer;
+              background: lighten(#d86214, 10%);
+              border-radius: 6px;
+              font-size: larger;
+              transition: .2s;
+            }
+
+            &:focus {
+              font-size: medium;
+            }
+          }
 
           &:hover {
             cursor: pointer;
@@ -222,9 +243,6 @@
             background: lighten(#d86214, 5%);
           }
         }
-      }
-
-      & .message {
       }
     }
 

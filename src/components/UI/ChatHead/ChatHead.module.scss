@@ -44,14 +44,14 @@
       border-radius: 4px;
       outline: none;
       border: 1px solid #d0e4f7;
-      background: linear-gradient(120deg, #d86214 10%, #d81476 80%);
+      background: #d81476;
       font-weight: 500;
       color: #d0e4f7;
 
       &:hover {
         cursor: pointer;
-        transform: scale();
-        background: linear-gradient(120deg, #d81476 10%, #d86214 80%);
+        transition: background-color 0.5s ease;
+        background: #d86214;
       }
     }
   }
@@ -70,8 +70,9 @@
     display: flex;
     flex-direction: column-reverse;
     height: 40rem;
-    padding-bottom: 5rem;
-    background: linear-gradient(120deg, #d86214 10%, #d81476 80%);
+    background: linear-gradient(-45deg, #d86214 10%, #d81476 80%);
+    animation: gradient 5s ease infinite;
+    background-size: 400% 400%;
     overflow-y: scroll;
     overflow-x: hidden;
 
@@ -91,76 +92,120 @@
   }
 
   & .type {
-    position: absolute;
-    bottom: 0rem;
-    left: 0rem;
+    position: flex;
+    flex-direction: row;
     width: 100%;
     display: flex;
     flex-direction: row;
     border: 2px solid #1a1919;
+    background: #d0e4f7;
 
     &:focus {
       outline: none;
     }
+    & .textfieldArea {
+      display: flex;
+      flex-direction: column;
+      width: 80%;
 
-    & .input {
-      width: 85%;
-      background: #464646;
-      color: #d0e4f7;
-      padding: 0.2rem 0.4rem;
-      border: 2px solid #e4742a;
-      resize: none;
-      height: 4rem;
-      margin-top: auto;
-      margin-bottom: auto;
-      margin-left: 2.5%;
-      margin-right: 2.5%;
-      font-size: 16px;
-      border-radius: 1.2rem;
-      outline: none;
-
-      &::-webkit-scrollbar {
-        width: 1em;
-      }
-
-      &::-webkit-scrollbar-track {
-        -webkit-box-shadow: inset 0 0 6px rgba(218, 211, 211, 0.3);
-        border-radius: 4px;
-      }
-      &::-webkit-scrollbar-thumb {
-        background-color: darkgrey;
+      & .input {
+        width: 100%;
+        background: #464646;
+        color: #d0e4f7;
+        padding: 0.4rem 0.4rem;
+        border: 3px solid #d81476;
+        text-indent: 2%;
+        resize: none;
+        height: 4rem;
+        margin-top: auto;
+        margin-bottom: auto;
+        margin-left: 2%;
+        margin-right: 2%;
+        font-size: 20px;
+        border-radius: 1.2rem 0rem 0rem 1.2rem;
         outline: none;
-        border-radius: 4px;
+
+        &::-webkit-scrollbar {
+          width: 1em;
+          z-index: 1;
+          
+        }
+
+        &::-webkit-scrollbar-track {
+          -webkit-box-shadow: inset 0 0 6px rgba(218, 211, 211, 0.3);
+          border-radius: 4px;
+        }
+        &::-webkit-scrollbar-thumb {
+          background-color: darkgrey;
+          outline: none;
+          border-radius: 4px;
+        }
       }
     }
 
-    & .send {
+    & .sendArea {
+      display: flex;
+      flex-direction: column;
       width: 20%;
-      height: 4.5rem;
-      margin: 0.25rem 0.25rem;
-      background: #1a1919;
-      border: 2px solid #d81476;
-      position: relative;
+      padding: 0rem 0.5rem;
 
-      &:hover {
-        cursor: pointer;
-        transform: scale(1.02);
-        background: #000;
-        border: 1px solid #d81476;
-        padding: 0.5rem;
-      }
+      & .send {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 4rem;
+        margin: 0.25rem 0.25rem;
+        background: #464646;
+        border: 3px solid #d81476;
+        position: relative;
+        border-radius: 45%;
 
-      &:active {
-        transform: scale(1);
-        background: #1a1919;
-      }
+        &:hover > span {
+          transform: scale(1.2);
+          transition: 0.2s;
+        }
 
-      & span {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+        &:active > span {
+          transform: scale(0.9);
+          transition: 0.2s;
+        }
+
+        &:hover {
+          cursor: pointer;
+          transform: scale(1);
+          background: #000;
+          border: 3px solid #d81476;
+          padding: 0.2rem;
+          transition: 0.2s;
+        }
+
+        &:active {
+          transform: scale(1);
+          background: #1a1919;
+        }
+
+        & span {
+          position: flex;
+          // top: 50%;
+          // left: 50%;
+          // transform: translate(-50%, -50%);
+          color: #e4742a;
+        }
       }
     }
+  }
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
   }
 }
