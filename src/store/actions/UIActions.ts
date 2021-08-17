@@ -149,7 +149,6 @@ export const setmodalstyle = (style: boolean) => (dispatch: Dispatch<UIAction>) 
 export const loadtexts = (convoId: string) => async (dispatch: Dispatch<UIAction>, dispatch2: Dispatch<offerAction>) => {
     try {
         const texts = await agent.texts.list(convoId)
-        //console.log(convos)
         dispatch({
             type: LOAD_TEXTS,
             payload: texts

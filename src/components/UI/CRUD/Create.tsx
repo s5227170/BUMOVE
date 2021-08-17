@@ -44,12 +44,11 @@ const Create: FC = () => {
 
     useEffect(() => {
         if (successCreate == true) {
-            dispatch(setmodalstyle(false))
+            dispatch(setmodal(false));
+            dispatch(setbackdrop(false));
 
             setTimeout(() => {
-                dispatch(setcreatesuccess(false));
-                dispatch(setmodal(false));
-                dispatch(setbackdrop(false));
+                dispatch(setmodalstyle(false))
 
                 return () => {
                     dispatch(setoffer(null, ""));
@@ -61,6 +60,7 @@ const Create: FC = () => {
                     dispatch(setroomcount(0));
                     dispatch(setconvo(null));
                     dispatch(setimagesuccess(false))
+                    dispatch(setcreatesuccess(false));
                 }
             }, 750);
 
@@ -68,11 +68,11 @@ const Create: FC = () => {
     }, [successCreate])
 
     const closeHandler = () => {
-        dispatch(setmodal(false));
-        dispatch(setbackdrop(false));
-        setTimeout(() => {
+        dispatch(setmodalstyle(true))
 
-            dispatch(setmodalstyle(true))
+        setTimeout(() => {
+            dispatch(setmodal(false));
+            dispatch(setbackdrop(false));
             return () => {
                 dispatch(setoffer(null, ""));
                 dispatch(setloadingoffer(false));
@@ -258,7 +258,7 @@ const Create: FC = () => {
                     <Uploader />
 
                 </div>
-                <div className={classes.col3}>
+                <div className={classes.col2}>
                     <span id={classes['close']} className="material-icons md-36" onClick={closeHandler}>
                         cancel_presentation
                     </span>

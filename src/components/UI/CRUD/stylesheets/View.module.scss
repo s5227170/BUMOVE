@@ -126,7 +126,7 @@
         display: flex;
         flex-direction: column;
         width: 50%;
-        height: 6rem;
+        height: 14rem;
         text-align: center;
         margin: 2rem 0rem 0rem 0rem;
 
@@ -193,20 +193,24 @@
         & .price {
           display: flex;
           flex-direction: column;
-          height: 50%;
+          height: 100%;
           width: 8rem;
-          margin: auto;
+          margin-left: auto;
+          margin-right: auto;
           background: #464646;
           border: 1px solid #d0e4f7;
           font-weight: 600;
           height: 2rem;
+          margin-bottom: 1rem;
+          padding: 0.2rem 1rem;
         }
 
         & .message {
           display: flex;
           flex-direction: column;
-          height: 50%;
+          height: 100%;
           width: 8rem;
+          margin-top: 1rem;
           margin: auto;
           background: #d86214;
           border: 1px solid #d0e4f7;

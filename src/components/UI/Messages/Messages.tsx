@@ -16,6 +16,7 @@ const Messages: FC = () => {
     const [loaded, setLoaded] = useState(false);
     const [msgItems, setMsgItems] = useState<Array<any>>([]);
 
+    console.log(convos)
     useEffect(() => {
         if(convos){
             setMsgItems(convos)
@@ -49,7 +50,7 @@ const Messages: FC = () => {
                 <div className={classes.browse}>
                     {msgItems.map(item => {
                         return <div className={classes.conversation} key={uuid()} >
-                            <img src={item.offerAvatar} alt={"Avatar"} />
+                            <img src={item.rentId.images[0]} alt={"Avatar"} />
                             <h5>{item.name}</h5>
                             <span id={classes['continue']} className="material-icons md-36" onClick={() => (dispatch(setmodaltype("Chat")), dispatch(setconvo({ _id: item.id, home: item.home, rentId: item.rentId, away: item.away, offerAvatar: item.offerAvatar, texts: item.texts })))}>
                                 double_arrow

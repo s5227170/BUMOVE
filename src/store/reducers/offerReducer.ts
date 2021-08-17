@@ -168,7 +168,7 @@ export default (state = initialState, action: offerAction) => {
         case LIST_CONVERSATIONS:
             return {
                 ...state,
-                texts: action.payload,
+                convos: action.payload,
             }
         case SET_IMAGE_SUCCESS:
             return {

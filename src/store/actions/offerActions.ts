@@ -364,10 +364,12 @@ export const filteroffers = (ids: string[], all: Rent[], min: number, max: numbe
 export const setconversations = () => async (dispatch: Dispatch<offerAction>) => {
     try {
         const convos = await agent.conversation.list()
-        //console.log(convos)
+                    // @ts-ignore
+        console.log(convos.data.conversations.conversations)
         dispatch({
             type: LIST_CONVERSATIONS,
-            payload: convos
+                    // @ts-ignore
+            payload: convos.data.conversations.conversations
         })
 
     } catch (e) {

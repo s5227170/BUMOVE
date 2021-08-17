@@ -1,7 +1,7 @@
 import React, { ChangeEvent, FC, FormEvent, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../store';
-import { setbackdrop, setmodal, setmodaltype } from '../../../store/actions/UIActions';
+import { setbackdrop, setconvo, setmodal, setmodalstyle, setmodaltype, setoffer } from '../../../store/actions/UIActions';
 import openSocket from 'socket.io-client';
 
 import unknown from '../../../static/images/unknown.jpg';
@@ -41,11 +41,17 @@ const Chat: FC<Props> = ({ id, home, away, rentId, offerAvatar, texts, offerName
     }, []);
 
     const closeHandler = () => {
-        dispatch(setmodal(false));
-        dispatch(setbackdrop(false));
-        dispatch(setmodaltype(""));
+        dispatch(setmodalstyle(true))
+
         //add a cleanup function for the chathead component, nullify all values so the chat can be
         //reset again. Also required to stop the socket!
+        setTimeout(() => {
+            dispatch(setmodal(false));
+            dispatch(setconvo(null));
+            dispatch(setbackdrop(false));
+            dispatch(setoffer(null, ""));
+            dispatch(setmodaltype(""));
+        }, 700);
     }
 
     const sendMessageHandler = async (e: FormEvent<HTMLDivElement>) => {

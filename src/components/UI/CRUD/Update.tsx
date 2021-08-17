@@ -54,9 +54,8 @@ const Update: FC = () => {
         if (successUpdate == true) {
             dispatch(setmodal(false));
             dispatch(setbackdrop(false));
-            setTimeout(() => {
-                dispatch(setupdatesuccess(false));
 
+            setTimeout(() => {
                 dispatch(setmodalstyle(false))
                 return () => {
                     dispatch(setoffer(null, ""));
@@ -66,9 +65,9 @@ const Update: FC = () => {
                     dispatch(setimagelinks([], []));
                     dispatch(setimageamount(0, 0));
                     dispatch(setroomcount(0));
-                    dispatch(setupdatesuccess(false));
                     dispatch(setconvo(null));
                     dispatch(setimagesuccess(false))
+                    dispatch(setupdatesuccess(false));
                 }
             }, 750);
         }

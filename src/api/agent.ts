@@ -237,17 +237,19 @@ const toRent = {
 const conversation = {
     list: (): Promise<[]> => requests.post({
         query: `
-    query conversations {
-        conversations {
-            _id
-            name
-            rentId{
+    query {
+        conversations { conversations {
                 _id
-            }
-            home
-            away
-            texts{
-                _id
+                name
+                rentId{
+                    _id
+                    images
+                }
+                home
+                away
+                texts{
+                    _id
+                }
             }
         }
     }
