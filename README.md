@@ -44,22 +44,3 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
-
-## Extra details
-In order to use this project, one must have their own firebase account and create an app themselves, then they must set rules so their database can allow reads/writes. Then they need to fill the details for that app in a .env.local file that should be placed in the main folder. They also need to add their own keys for GOOGLE MAPS API, GEOCODING API and PLACES API.  Namings should be done like so:
-
-REACT_APP_FIREBASE_API_KEY=
-REACT_APP_FIREBASE_AUTH_DOMAIN=
-REACT_APP_FIREBASE_DB_URL=
-REACT_APP_FIREBASE_PROJECT_ID=
-REACT_APP_FIREBASE_STORAGE_BUCKET=
-REACT_APP_FIREBASE_MESSAGING_SENDER_ID=
-REACT_APP_FIREBASE_APP_ID=
-
-REACT_APP_GOOGLE_MAPS_API_KEY=
-REACT_APP_GEOCODING_API_KEY=
-REACT_APP_PLACES_API_KEY=
-
-## Features TBD:
--Search functionality
--Responsive design
